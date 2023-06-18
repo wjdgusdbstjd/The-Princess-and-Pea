@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        scroll-snap-type: y mandatory;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+    }
+
+    .back {
+        z-index: 15;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        background-color: aliceblue;
+        text-align: center;
+        padding: 20px 10px;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+
+    .swiper-container {
+        width: 100%;
+        height: 100vh;
+        scroll-snap-type: y mandatory;
+        position: absolute;
+        top: 0;
+    }
+
+    .swiper-slide {
+        width: 100%;
+        height: 100vh;
+        background-image: url(./img/preview-background.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-sizing: content-box;
+        scroll-snap-align: start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circle.active {
+        opacity: 1;
+    }
+
+    .circle-content {
+        /* position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 5; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p {
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #nextButton {
+        width: 100px;
+        height: 40px;
+        background-color: aliceblue;
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #253765;
+        font-weight: bold;
+    }
+
+    .last-text {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .last-text span {
+        color: #77BF54;
+    }
+</style>
+
+<body>
+    <a class="back" href="index.html">돌아가기</a>
+    <div class="swiper-container"> <!--전체 감싸는 container-->
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"> <!--swiper-slide 첫번째-->
+                <div class="circle-content">
+                    <p>옛날 한 성에 왕비와 왕자가 살고있었습니다.</p>
+                </div>
+            </div>
+            <div class="swiper-slide"> <!--swiper-slide 두번째-->
+                <div class="circle-content">
+                    <p>어느덧 왕자가 슬슬 결혼을 해야하는 나이가 되었지만, 마땅한 신붓감을 찾기는 어려웠습니다.</p>
+                </div>
+            </div>
+            <div class="swiper-slide"> <!--swiper-slide 세번째-->
+                <div class="circle-content">
+                    <p>그래서 여왕은 왕자에게 일년 내에 신붓감을 찾으라고 명령했습니다. </p>
+                </div>
+            </div>
+            <div class="swiper-slide"> <!--swiper-slide 세번째-->
+                <div class="circle-content">
+                    <p>하지만 왕자는 마음에 쏙 드는 사람이 없었습니다.</p>
+                </div>
+            </div>
+            <div class="swiper-slide"> <!--swiper-slide 세번째-->
+                <div class="circle-content">
+                    <p>보다 못한 여왕이 한가지 기발한 아이디어를 냈습니다.</p>
+                </div>
+            </div>
+            <div class="swiper-slide"> <!--swiper-slide 세번째-->
+                <div class="circle-content">
+                    <p class="last-text">바로 <span>“완두콩"</span>으로 진정한 공주를 찾는 것이었어요.</p>
+                    <a id="nextButton" href="page1.html" style="display: none;">다음 페이지</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            speed: 800,
+            effect: 'fade',
+            loop: false,
+            direction: 'vertical',
+            slidesPerView: 1,
+            mousewheel: true,
+            pagination: {
+                el: ".swiper-container__pagination",
+                clickable: true,
+            },
+            on: {
+                slideChangeTransitionStart: function () {
+                    var currentSlideIndex = mySwiper.realIndex;
+                    var lastSlideIndex = mySwiper.slides.length - 1;
+                    var currentSlideHeight = $(mySwiper.slides[currentSlideIndex]).find('.circle-content').height();
+                    var windowHeight = $(window).height();
+                    var containerTop = (windowHeight - currentSlideHeight) / 2;
+                    //$('.swiper-wrapper').css('transform', 'translate3d(0, ' + containerTop + 'px, 0)'); // 이 코드를 막으니 처음 스크롤시 화면 전체가 아래로 내려가버리는 문제가 해결되었다
+
+                    if (currentSlideIndex === lastSlideIndex) {
+                        $('#nextButton').show();
+                    } else {
+                        $('#nextButton').hide();
+                    }
+                },
+            },
+        });
+
+        $(window).on('scroll', function () {
+            //$(window).scrollTop(0);
+        });
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

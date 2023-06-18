@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-image: url(./img/표지1.png);
+        background-size: cover;
+    }
+
+    .go_btn {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .go_btn a {
+        display: flex;
+        background-image: url(./img/pea_color.png);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        padding: 13px;
+        text-decoration: none;
+        color: #ffffff;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        position: relative;
+        top: 90px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div class="go_btn">
+        <a href="preview.html" class="link" onmouseover="changeImage(this)" onmouseout="restoreImage(this)">Go</a>
+        <!--마우스가 a태그 위로 올라가면 onmouseover 이벤트 함수가 호출된다 this는 링크 자체(a)를 나타낸다.
+        onmouseout되었을 때는 restoreImage함수가 호출된다.-->
+    </div>
+
+    <script>
+        function changeImage(element) { // changeImage : 이미지와 글자 색을 변경하도록 하는 함수 element라는 매개 변수를 가지고 있다(임의로 정함) 
+            element.style.backgroundImage = "url('./img/pea.png')"; //배경 이미지를 변경한다.
+            element.style.color="#37731A"; //글자 색상을 변경한다.
+        }
+
+        function restoreImage(element) { // restoreImage : 이미지와 글자 색을 원래대로 되돌리는 함수(임의로 정함)
+            element.style.backgroundImage = "url('./img/pea_color.png')"; //배경이미지를 원래의 이미지로 변경한다
+            element.style.color="white"; //글자 색상을 원래 이미지로 변경한다
+        }
+    </script>
+</body>
+
+</html>
